@@ -16,22 +16,10 @@ import { Ionicons } from '@expo/vector-icons';
 const Card = ({ task }) => {
   return (
     <View
-      style={{
-        marginBottom: 30,
-        padding: 20,
-        borderRadius: 15,
-        backgroundColor: "#171717",
-        shadowColor: "#000",
-        shadowOpacity: 3.9,
-        shadowRadius: 5,
-        elevation: 5
-      }}
+      style={styles.container}
     >
       <Text
-        style={{
-          fontSize: 16,
-          color: "white"
-        }}>
+        style={nameText}>
         {task.name}
       </Text>
       <View
@@ -54,5 +42,22 @@ const Card = ({ task }) => {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 30,
+    padding: 20,
+    borderRadius: 15,
+    backgroundColor: "#171717",
+    shadowColor: "#000",
+    shadowOpacity: 3.9,
+    shadowRadius: 5,
+    elevation: 5
+  },
+  nameText: {
+    fontSize: 16,
+    color: "white"
+  }
+})
 
 export default Card
