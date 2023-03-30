@@ -1,20 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+import Main from "./src/screens/Main.js";
+import AddTask from "./src/screens/Add.js";
+import Settings from "./src/screens/Setttings.js";
+import { Feather } from '@expo/vector-icons';
+
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    <>
+      <NavigationContainer >
+        <Stack.Navigator
+          initialRouteName="Main"
+          screenOptions={{
+            headerShown: false,
+          }}>
+          <Stack.Screen
+            name="Main"
+            component={Main}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <Feather name="server" size={size} color={color} />
+              )
+            }}
+          />
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+          <Stack.Screen
+            name="Add"
+            component={AddTask}
+            options={{
+              presentation: 'card'
+            }}
+          />
+          <Stack.Screen
+            name="Settings"
+            component={Settings}
+          />
+        </Stack.Navigator>
+      </NavigationContainer >
+    </>
+  )
+}

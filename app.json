@@ -1,11 +1,16 @@
 {
   "expo": {
+    "backgroundColor": "#F3F2F3",
     "name": "DailyApp",
-    "slug": "DailyApp",
+    "slug": "dailyapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "androidStatusBar": {
+      "backgroundColor": "#F3F2F3",
+      "foregroundColor": "#101010"
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -21,10 +26,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.alexparco.dailyapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1fbb8c73-22e5-444f-9939-67964508fa79"
+      }
+    },
+    "owner": "alexparco"
   }
 }
