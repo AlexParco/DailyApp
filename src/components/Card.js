@@ -1,12 +1,6 @@
 import {
   Text,
   View,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-  StatusBar,
-  Button,
-  Dimensions,
   StyleSheet
 } from 'react-native';
 
@@ -23,19 +17,11 @@ const Card = ({ task }) => {
         {task.name}
       </Text>
       <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          marginTop: 5
-        }}
+        style={styles.viewBox}
       >
         <Ionicons name="time-outline" size={17} color="#c4c4c4" />
         <Text
-          style={{
-            paddingLeft: 2,
-            fontSize: 13,
-            color: "#c4c4c4"
-          }}>
+          style={styles.createdText}>
           {moment(task.created_at).format("LT")}
         </Text>
       </View>
@@ -57,6 +43,16 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 16,
     color: "white"
+  },
+  viewBox: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 5
+  },
+  createdText: {
+    paddingLeft: 2,
+    fontSize: 13,
+    color: "#c4c4c4"
   }
 })
 
