@@ -6,7 +6,7 @@ import {
   Dimensions,
   StyleSheet,
   TouchableOpacity,
-  Button
+  Button,
 } from "react-native"
 import React from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -17,47 +17,26 @@ const AddTask = () => {
 
   return (
     <View
-      style={{
-        paddingTop: 30,
-        marginTop: StatusBar.currentHeight + 10,
-        marginHorizontal: 10,
-        backgroundColor: "#fff",
-        borderRadius: 20,
-        elevation: 10,
-        height: "100%",
-        paddingHorizontal: 30,
-      }}
+      style={styles.container}
     >
       <Text
-        style={{
-          fontSize: 30,
-          fontWeight: "bold"
-        }}>Add Task</Text>
+        style={styles.addText}>Add Task</Text>
       <View>
         <View
-          style={{
-            marginTop: 20,
-            display: 'flex',
-            flexDirection: 'column'
-          }}>
+          style={styles.nameBox}>
           <Text
-            style={{ fontSize: 18, fontWeight: '400' }}>
+            style={styles.nameText}>
             Name:
           </Text>
-          <TextInput placeholder="type a name" style={{
-            padding: 5,
-            marginTop: 10,
-            borderWidth: 1,
-          }} />
+          <TextInput 
+            placeholder="type a name" 
+            style={styles.nameInput} 
+          />
         </View>
         <View
-          style={{
-            marginTop: 20,
-            display: 'flex',
-            flexDirection: 'column'
-          }}>
+          style={styles.descriptionBox}>
           <Text
-            style={{ fontSize: 18, fontWeight: '400' }}>
+            style={styles.descriptionText}>
             Description:
           </Text>
           <TextInput
@@ -65,12 +44,7 @@ const AddTask = () => {
             numberOfLines={6}
             label='description'
             placeholder="Type Something"
-            style={{
-              padding: 5,
-              textAlignVertical: 'top',
-              marginTop: 10,
-              borderWidth: 1,
-            }} />
+            style={styles.descriptionInput} />
         </View>
         <View
           style={{
@@ -92,24 +66,72 @@ const AddTask = () => {
         }
       </View>
       <TouchableOpacity
-        style={{
-          marginTop: 40,
-          height: 50,
-          backgroundColor: "#303030",
-          borderRadius: 12,
-          borderWidth: 1,
-          borderColor: "#0a0a0a30",
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}
+        style={styles.saveButton}
       >
-        <Text style={{
-          fontSize: 16,
-          color: '#fff'
-        }}>Save</Text>
+        <Text style={styles.saveText}>Save</Text>
       </TouchableOpacity>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 30,
+    marginTop: StatusBar.currentHeight + 10,
+    marginHorizontal: 10,
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    elevation: 10,
+    height: "100%",
+    paddingHorizontal: 30,
+  },
+  saveText: {
+    fontSize: 16,
+    color: '#fff'
+  },
+  addText: {
+    fontSize: 30,
+    fontWeight: "bold"
+  },
+  nameBox: {
+    marginTop: 20,
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  nameText: {
+    fontSize: 18,
+    fontWeight: '400'
+  },
+  nameInput: {
+    padding: 5,
+    marginTop: 10,
+    borderWidth: 1,
+  },
+  descriptionBox: {
+    marginTop: 20,
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  descriptionText: {
+    fontSize: 18,
+    fontWeight: '400'
+  },
+  descriptionInput: {
+    padding: 5,
+    textAlignVertical: 'top',
+    marginTop: 10,
+    borderWidth: 1,
+  },
+  saveButton: {
+    marginTop: 40,
+    height: 50,
+    backgroundColor: "#303030",
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#0a0a0a30",
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+})
 
 export default AddTask
