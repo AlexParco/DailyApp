@@ -13,7 +13,7 @@ const Card = ({ task }) => {
       style={styles.container}
     >
       <Text
-        style={nameText}>
+        style={styles.nameText}>
         {task.name}
       </Text>
       <View
