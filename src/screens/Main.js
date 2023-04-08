@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
   StatusBar,
+  StyleSheet,
   Button,
   Dimensions,
 } from 'react-native';
@@ -125,33 +126,37 @@ const Main = ({ navigation }) => {
           navigation.navigate("Add")
         }}
         title='add'
-        style={{
-          width: 45,
-          height: 45,
-          backgroundColor: "#F3F2F3",
-          marginBottom: 20,
-          borderRadius: 15,
-          position: 'absolute',
-          bottom: 20,
-          borderWidth: 1,
-          borderColor: "#0a0a0a30",
-          right: 20,
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 2,
-          },
-          shadowOpacity: .5,
-          shadowRadius: 5,
-          elevation: 10,
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}
+        style={styles.addBtn}
       >
         <Entypo name="plus" size={24} color="black" />
       </TouchableOpacity>
     </>
   )
 };
+
+const styles = StyleSheet.create({
+  addBtn: {
+    width: 45,
+    height: 45,
+    backgroundColor: "#F3F2F3",
+    marginBottom: 20,
+    borderRadius: 15,
+    position: 'absolute',
+    bottom: 20,
+    borderWidth: 1,
+    borderColor: "#0a0a0a30",
+    right: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: .5,
+    shadowRadius: 5,
+    elevation: 10,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+})
 
 export default Main;
