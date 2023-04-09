@@ -1,4 +1,5 @@
 import CalendarStrip from 'react-native-calendar-strip';
+import moment from 'moment';
 
 const Calendar = ({ selectedDate, setSelectedDate }) => {
 
@@ -9,6 +10,7 @@ const Calendar = ({ selectedDate, setSelectedDate }) => {
       daySelectionAnimation={{ type: 'background', duration: 200, highlightColor: "#181818" }}
       calendarHeaderFormat="MMMM"
       calendarHeaderPosition="above"
+      startingDate={moment()}
       calendarHeaderStyle={{
         fontSize: 19,
         color: '#303030',

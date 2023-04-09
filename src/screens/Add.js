@@ -11,7 +11,7 @@ import {
 import React from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-const AddTask = () => {
+const AddTask = ({ navigation }) => {
   const [date, setDate] = React.useState(new Date())
   const [open, setOpen] = React.useState(false)
 
@@ -19,9 +19,32 @@ const AddTask = () => {
     <View
       style={styles.container}
     >
-      <Text
-        style={styles.addText}>Add Task</Text>
       <View>
+        <View style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: 20,
+        }}>
+          <TouchableOpacity
+            style={{
+              width: 45,
+              height: 45,
+              backgroundColor: "#f3f3f3",
+              borderRadius: 15,
+              borderWidth: 1,
+              borderColor: "#0a0a0a30",
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+            onPress={() => {
+              navigation.navigate('Main')
+            }}
+          >
+            <Text>{'<'}</Text>
+          </TouchableOpacity>
+          <Text
+            style={styles.addText}>Add Task</Text>
+        </View>
         <View
           style={styles.nameBox}>
           <Text
@@ -53,15 +76,17 @@ const AddTask = () => {
             flexDirection: 'column'
           }}>
         </View>
-        <TouchableOpacity onClick={() => setOpen(!open)}><Text>hola</Text></TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => setOpen(!open)}>
+          <Text>hola</Text>
+        </TouchableOpacity>
         {
           open &&
           <DateTimePicker
             value={date}
             mode={'datetime'}
             is24Hour={true}
-            onTouchCancel={() => setOpen(false)}
-          // onChange={(e, selectedDate) => setDate(selectedDate)}
+            onTouchCancel={() => setOpen(!open)}
           />
         }
       </View>
@@ -76,12 +101,9 @@ const AddTask = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 30,
+    paddingTop: 20,
     marginTop: StatusBar.currentHeight + 10,
-    marginHorizontal: 10,
     backgroundColor: "#fff",
-    borderRadius: 20,
-    elevation: 10,
     height: "100%",
     paddingHorizontal: 30,
   },
@@ -91,10 +113,10 @@ const styles = StyleSheet.create({
   },
   addText: {
     fontSize: 30,
-    fontWeight: "bold"
+    fontWeight: "500"
   },
   nameBox: {
-    marginTop: 20,
+    marginTop: 30,
     display: 'flex',
     flexDirection: 'column'
   },
