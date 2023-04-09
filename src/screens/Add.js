@@ -28,9 +28,9 @@ const AddTask = () => {
             style={styles.nameText}>
             Name:
           </Text>
-          <TextInput 
-            placeholder="type a name" 
-            style={styles.nameInput} 
+          <TextInput
+            placeholder="type a name"
+            style={styles.nameInput}
           />
         </View>
         <View
