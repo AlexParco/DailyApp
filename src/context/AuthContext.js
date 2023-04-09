@@ -9,30 +9,37 @@ import {
 const AuthContext = createContext()
 
 export const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({
+    username: '',
+    password: ''
+  })
 
-  const changeUser = (value, label) => {
-    setUser(prev => {
-      prev[label] = value
-    })
+  const changeUser = ({ value, label }) => {
+    setUser(prev => ({
+      ...prev,
+      [label]: value
+    }))
   }
 
-  useEffect(() => {
-    if (!user) {
-      AsyncStorage.setItem('GLOBAL_USER', user)
-    }
-  }, [user])
+  const loginAuth = () => {
+    console.log(user)
+    AsyncStorage.setItem('GLOBAL_USER', JSON.stringify(user))
+  }
 
   useEffect(() => {
     AsyncStorage.getItem('GLOBAl_USER')
       .then(value => {
-        console.log(value)
+        if (value) {
+          setUser(user)
+        }
       })
-  })
+  }, [])
+
   return (
     <AuthContext.Provider value={{
       user,
-      changeUser
+      changeUser,
+      loginAuth
     }}>
       {children}
     </AuthContext.Provider>
@@ -40,9 +47,10 @@ export const AuthContextProvider = ({ children }) => {
 }
 
 export const useAuth = () => {
-  const { user, changeUser } = useContext(AuthContext)
+  const { user, changeUser, loginAuth } = useContext(AuthContext)
   return {
     user,
-    changeUser
+    changeUser,
+    loginAuth
   }
 }

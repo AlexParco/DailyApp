@@ -6,16 +6,19 @@ import {
   StatusBar,
   Dimensions,
   TextInput,
+  Button,
+  Touchable,
+  TouchableOpacity,
 } from 'react-native'
 import { useAuth } from '../../context/AuthContext'
 
-const Login = () => {
-  const { user } = useAuth()
-  const [form, setForm] = React.useState({
-    username: '',
-    password: ''
-  })
-  console.log(form)
+const Login = ({ navigation }) => {
+  const { loginAuth, changeUser } = useAuth()
+
+  const handleLogin = () => {
+    loginAuth()
+    navigation.navigate('Main')
+  }
 
   return (
     <View style={styles.container}>
@@ -30,23 +33,33 @@ const Login = () => {
           label='Username'
           placeholder="Username"
           onChangeText={(value) =>
-            setForm(prev => ({
-              ...prev,
-              username: value
-            }))
+            changeUser({
+              value: value,
+              label: 'username'
+            })
           }
           style={[styles.usernameInput, styles.shadowProp]} />
         <TextInput
           multiline={true}
           label='Password'
           onChangeText={(value) =>
-            setForm(prev => ({
-              ...prev,
-              password: value
-            }))
+            changeUser({
+              value: value,
+              label: 'password'
+            })
           }
           placeholder="Password"
           style={styles.usernameInput} />
+        <TouchableOpacity
+          style={styles.loginBtn}
+          onPress={() => handleLogin()}>
+          <Text style={{
+            color: '#fff',
+            textAlign: 'center',
+            letterSpacing: 1.2,
+            fontWeight: '500',
+          }}>Log In</Text>
+        </TouchableOpacity>
       </View>
     </View>
   )
@@ -72,6 +85,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#b9b9b9',
   },
+  loginBtn: {
+    width: '100%',
+    backgroundColor: '#252525',
+    padding: 10,
+    borderRadius: 12,
+    borderWidth: 1,
+  }
 })
 
 export default Login

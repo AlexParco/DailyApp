@@ -15,6 +15,7 @@ import Calendar from '../components/Calendar';
 import { Entypo } from '@expo/vector-icons';
 import moment from 'moment';
 import Card from '../components/Card';
+import { useAuth } from '../context/AuthContext';
 
 const testTasks = [
   { id: 1, name: "tarea 1", description: "", done: false, created_at: "10:20", expired_at: "11:20" },
@@ -32,17 +33,18 @@ const Main = ({ navigation }) => {
   const [tasks, setTasks] = React.useState(testTasks)
   const today = moment(new Date())
   const [selectedDate, setSelectedDate] = React.useState(today)
+  const { user } = useAuth()
 
   React.useEffect(() => {
-    setTasks(prev => prev.filter(e => 
-        moment(e.created_at).day() === selectedDate.day()))
-  },[selectedDate])
+    setTasks(prev => prev.filter(e =>
+      moment(e.created_at).day() === selectedDate.day()))
+  }, [selectedDate])
 
   return (
     <>
       <ScrollView
         contentContainerStyle={{
-          marginTop: StatusBar.currentHeight,
+          marginTop: StatusBar.currentHeight + 15,
           width: '100%',
           height: Dimensions.get("window").height,
           flex: 1
@@ -64,7 +66,7 @@ const Main = ({ navigation }) => {
                 color: '#303030',
                 fontWeight: 'bold'
               }}
-            >Hello, Alex</Text>
+            >Hello, {user.username}</Text>
             <TouchableOpacity
               onPress={() => setSelectedDate(today)}
             >
@@ -111,13 +113,13 @@ const Main = ({ navigation }) => {
           }}
         >
           {
-            tasks.length === 0 
-            ?
+            tasks.length === 0
+              ?
               <Text>No hay Dailys para hoy</Text>
-            : 
+              :
               tasks.map((task, index) => (
                 <Card key={index} task={task} />
-            ))
+              ))
           }
         </View>
       </ScrollView>
